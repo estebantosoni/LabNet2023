@@ -9,18 +9,16 @@ namespace Practica1
     internal class Omnibus : TransportePublico
     {
 
-        public Omnibus(int cantPasajeros,string nombre) : base(cantPasajeros,nombre) { 
-
-        }
+        public Omnibus(int cantPasajeros,string nombre) : base(cantPasajeros,nombre) { }
 
         public override string Avanzar()
         {
-            return $"El omnibus avanzó";
+            return $"El omnibus {Nombre} avanzó";
         }
 
         public override string Detenerse()
         {
-            return $"El omnibus se detuvo";
+            return $"El omnibus {Nombre} se detuvo";
         }
     }
 }

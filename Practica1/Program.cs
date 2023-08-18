@@ -16,8 +16,8 @@ namespace Practica1
 
             int cantVehiculos = 0;
 
-            int maxVehiculos = 4;
-            int maxTipo = 2;
+            int maxVehiculos = 2;
+            int maxTipo = 1;
             int maxTaxis = 0;
             int maxOmnibus = 0;
 
@@ -28,7 +28,6 @@ namespace Practica1
             //variables para validaciones
             string nro;
             bool esNumero;
-            int valor;
 
             List<TransportePublico> t = new List<TransportePublico>();
 
@@ -70,7 +69,7 @@ namespace Practica1
                 {
                     Console.Write("-> ");
                     nro = Console.ReadLine();
-                    esNumero = int.TryParse(nro, out valor);
+                    esNumero = int.TryParse(nro, out _);
                     if (esNumero)
                     {
                         if ((int.Parse(nro) < 0 || int.Parse(nro) > 50) && s.Equals("1"))

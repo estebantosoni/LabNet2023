@@ -9,17 +9,16 @@ namespace Practica1
     internal class Taxi : TransportePublico
     {
 
-        public Taxi(int cantPasajeros,string nombre) : base(cantPasajeros, nombre) {
-        }
+        public Taxi(int cantPasajeros,string nombre) : base(cantPasajeros, nombre) { }
 
         public override string Avanzar()
         {
-            return $"El taxi avanzó";
+            return $"El taxi {Nombre} avanzó";
         }
 
         public override string Detenerse()
         {
-            return $"El taxi se detuvo";
+            return $"El taxi {Nombre} se detuvo";
         }
     }
 }

@@ -9,11 +9,11 @@ namespace Practica2
     internal class CustomEx : Exception
     {
 
-        public CustomEx(string mensaje) : base($"Mensaje de la excepcion personalizada: {mensaje}") { }
+        public CustomEx(string mensaje) : base($"{mensaje}. Mensaje de la excepcion personalizada.") { }
 
         public static void ThrowCustomEx()
         {
-            throw new CustomEx("Error de ejecución.");
+            throw new CustomEx("Error de ejecución");
         }
 
     }

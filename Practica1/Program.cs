@@ -16,8 +16,8 @@ namespace Practica1
 
             int cantVehiculos = 0;
 
-            int maxVehiculos = 2;
-            int maxTipo = 1;
+            int maxVehiculos = 10;
+            int maxTipo = 5;
             int maxTaxis = 0;
             int maxOmnibus = 0;
 

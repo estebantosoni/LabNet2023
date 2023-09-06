@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Adivina el numero</title>
+        <link rel="stylesheet" type="text/css" href="styles/style.css">
+    </head>
+    <body>
+            <h1 class="titulo">¡Adivina el numero! (entre 1 y 20)</h1>
+            <div class="juego">
+                <input id="numeroInput" class="input-text" placeholder="Ingrese un numero" type="number">
+                <button id="probarBtn" class="boton">Probar</button>
+            </div>
+            <div class="container">
+                <div class="puntuacion">
+                    <p>Resultado: <span id="resultadoSpan"></span> </p>
+                    <p>Puntuacion: <span id="puntuacionSpan">10</span> </p>
+                    <p>Puntuacion más alta: <span id="puntuacionAltaSpan">0</span> </p>
+                </div>
+                <button id="reiniciarBtn" class="boton" style="background-color: orange;">Reiniciar</button>
+            </div>
+        <div class="sistema-puntuacion">
+            <b>Sistema de puntuacion: </b>
+            <p> - El jugador inicia con 10 puntos.</p>
+            <p> - Por cada intento fallido pierde un punto.</p>
+            <p> - Si acierta el numero, suma 5 puntos.</p>
+            <p> - Si llega a 0 puntos, pierde.</p>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>

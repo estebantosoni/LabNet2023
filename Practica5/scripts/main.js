@@ -1,6 +1,7 @@
 let puntuacion = 10;
 let puntuacionAlta = 0;
 let nroParaAdivinar = Math.floor(Math.random() * 20) + 1;
+
 let obtenerResultadoSpan = null;
 
 const puntuacionSpan = document.getElementById("puntuacionSpan");

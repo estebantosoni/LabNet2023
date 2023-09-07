@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="styles/style.css">
     </head>
     <body>
-            <h1 class="titulo">¡Adivina el numero! (entre 1 y 20)</h1>
+            <h1 class="titulo">¡Adivina el numero! (entre 1 y <span id="nroMaximo"></span>)</h1>
             <div class="juego">
                 <input id="numeroInput" class="input-text" placeholder="Ingrese un numero" type="number">
                 <button id="probarBtn" class="boton">Probar</button>
@@ -15,17 +15,18 @@
             <div class="container">
                 <div class="puntuacion">
                     <p>Resultado: <span id="resultadoSpan"></span> </p>
-                    <p>Puntuacion: <span id="puntuacionSpan">10</span> </p>
-                    <p>Puntuacion más alta: <span id="puntuacionAltaSpan">0</span> </p>
+                    <p>Puntuacion: <span id="puntuacionSpan"></span> </p>
+                    <p>Puntuacion más alta: <span id="puntuacionAltaSpan"></span> </p>
                 </div>
                 <button id="reiniciarBtn" class="boton" style="background-color: orange;">Reiniciar</button>
             </div>
         <div class="sistema-puntuacion">
             <b>Sistema de puntuacion: </b>
-            <p> - El jugador inicia con 10 puntos.</p>
+            <p> - El jugador inicia con <span id="puntuacionBase"></span> puntos.</p>
             <p> - Por cada intento fallido pierde un punto.</p>
-            <p> - Si acierta el numero, suma 5 puntos.</p>
+            <p> - Si acierta el numero, suma <span id="puntosPorAcertar"></span> puntos.</p>
             <p> - Si llega a 0 puntos, pierde.</p>
+            <p> - En cualquier momento puede reiniciar y arrancar una nueva partida.</p>
         </div>
         <script src="scripts/main.js"></script>
     </body>

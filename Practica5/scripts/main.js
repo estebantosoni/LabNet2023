@@ -1,19 +1,43 @@
-let puntuacion = 10;
-let puntuacionAlta = 0;
-let nroParaAdivinar = Math.floor(Math.random() * 20) + 1;
+const puntuacionBase = 10
+const nroMaximo = 20
+const puntosPorAcertar = 3
+
+const Puntuacion = {
+    puntuacion : puntuacionBase,
+    puntuacionAlta : 0,
+    nroParaAdivinar : 0
+}
+
+function GenerateRandomNumber() {
+    return Math.floor(Math.random() * nroMaximo) + 1
+}
+
+Puntuacion.nroParaAdivinar = GenerateRandomNumber()
 
 let obtenerResultadoSpan = null;
 
 const puntuacionSpan = document.getElementById("puntuacionSpan");
 const puntuacionAltaSpan = document.getElementById("puntuacionAltaSpan");
+puntuacionSpan.textContent = Puntuacion.puntuacion.toString()
+puntuacionAltaSpan.textContent = Puntuacion.puntuacionAlta.toString();
+
 const probarBtn = document.getElementById("probarBtn");
 const reiniciarBtn = document.getElementById("reiniciarBtn");
+
+const nroMaximoSpan = document.getElementById("nroMaximo");
+nroMaximoSpan.textContent = nroMaximo.toString();
+
+const puntuacionBaseSpan = document.getElementById("puntuacionBase");
+puntuacionBaseSpan.textContent = puntuacionBase.toString();
+
+const puntosPorAcertarSpan = document.getElementById("puntosPorAcertar");
+puntosPorAcertarSpan.textContent = puntosPorAcertar.toString();
 
 function logicaPartidaPerdida(obtenerResultadoSpan,puntuacionAltaSpan){
     obtenerResultadoSpan.textContent = "Perdiste... :(";
     probarBtn.disabled = true;
-    puntuacionAltaSpan.textContent = puntuacionAlta.toString();
-    puntuacionSpan.textContent = puntuacion.toString();
+    puntuacionAltaSpan.textContent = Puntuacion.puntuacionAlta.toString();
+    puntuacionSpan.textContent = Puntuacion.puntuacion.toString();
 }
 
 probarBtn.addEventListener("click",function(){
@@ -24,58 +48,64 @@ probarBtn.addEventListener("click",function(){
 
     obtenerResultadoSpan = document.getElementById("resultadoSpan");
 
-    if(puntuacion > puntuacionAlta){
-        puntuacionAlta = puntuacion
+    if(Puntuacion.puntuacion > Puntuacion.puntuacionAlta){
+        Puntuacion.puntuacionAlta = Puntuacion.puntuacion
     }
 
-    if(puntuacion == 0){
+    if(Puntuacion.puntuacion == 0){
         logicaPartidaPerdida(obtenerResultadoSpan,puntuacionAltaSpan);
     }
-    else if(numero < nroParaAdivinar){
+    else if(numero < Puntuacion.nroParaAdivinar){
         
         obtenerResultadoSpan.textContent = "Muy bajo";
-        puntuacion = puntuacion - 1;
+        Puntuacion.puntuacion -= 1;
         
-        if(puntuacion == 0){
+        if(Puntuacion.puntuacion == 0){
             logicaPartidaPerdida(obtenerResultadoSpan,puntuacionAltaSpan);
         }
         else{
-            puntuacionSpan.textContent = puntuacion.toString();
+            puntuacionSpan.textContent = Puntuacion.puntuacion.toString();
         }
     }
-    else if(numero > nroParaAdivinar){
+    else if(numero > Puntuacion.nroParaAdivinar){
         
         obtenerResultadoSpan.textContent = "Muy alto";
-        puntuacion = puntuacion - 1
+        Puntuacion.puntuacion -= 1
         
-        if(puntuacion == 0){
+        if(Puntuacion.puntuacion == 0){
             logicaPartidaPerdida(obtenerResultadoSpan,puntuacionAltaSpan);
         }
         else{
-            puntuacionSpan.textContent = puntuacion.toString();
+            puntuacionSpan.textContent = Puntuacion.puntuacion.toString();
         }
     }
-    else if(numero == nroParaAdivinar){
+    else if(numero == Puntuacion.nroParaAdivinar){
         
         obtenerResultadoSpan.textContent = "¡Numero correcto! Se ha generado un numero numero para adivinar.";
-        puntuacion = puntuacion + 5
-        nroParaAdivinar = Math.floor(Math.random() * 20) + 1;
-        puntuacionSpan.textContent = puntuacion.toString();
+        
+        Puntuacion.puntuacion += puntosPorAcertar
+        Puntuacion.nroParaAdivinar = GenerateRandomNumber()
+        puntuacionSpan.textContent = Puntuacion.puntuacion.toString();
         
     }
 
 })
 
 reiniciarBtn.addEventListener("click", function(){
+    
     probarBtn.disabled = false;
-    if(puntuacion > puntuacionAlta){
-        puntuacionAlta = puntuacion
-        puntuacionAltaSpan.textContent = puntuacionAlta
+
+    if(Puntuacion.puntuacion > Puntuacion.puntuacionAlta){
+        Puntuacion.puntuacionAlta = Puntuacion.puntuacion
+        puntuacionAltaSpan.textContent = Puntuacion.puntuacionAlta.toString()
     }
-    puntuacion = 10;
-    puntuacionSpan.textContent = puntuacion;
-    nroParaAdivinar = Math.floor(Math.random() * 20) + 1;
+
+    Puntuacion.puntuacion = puntuacionBase;
+    puntuacionSpan.textContent = Puntuacion.puntuacion.toString();
+    Puntuacion.nroParaAdivinar = GenerateRandomNumber()
+
     numeroInput.value = "";
+
     if(obtenerResultadoSpan != null){
         obtenerResultadoSpan.textContent = ""
     }

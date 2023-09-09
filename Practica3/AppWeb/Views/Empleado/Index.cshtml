@@ -1,0 +1,72 @@
+﻿@model List<Entidades.DTO.EmployeesDTO>
+
+@{
+    ViewBag.Title = "Pagina Empleado";
+}
+
+<head>
+    <style>
+
+        .link-button {
+            display: inline-block;
+            border: 1px solid #000000;
+            padding: 5px;
+            border-radius: 5px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .link-button:hover {
+            background-color: #eee;
+        }
+
+        .insert-button {
+            padding: 7px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: large;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>
+        Lista de empleados
+    </h1>
+
+    <div class="link-button insert-button">@Html.ActionLink("Insertar", "InsertView", new { area = "" }, new { @class = "nav-link" })</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre completo</th>
+                <th scope="col"> Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>
+                            <div class="link-button">
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "nav-link" })
+                            </div>
+                            <div class="link-button">
+                                @Html.ActionLink("Actualizar", "UpdateView", item, new { @class = "nav-link" })
+                            </div>
+                        </td>
+
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+
+

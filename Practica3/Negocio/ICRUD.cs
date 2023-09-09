@@ -11,6 +11,7 @@ namespace Negocio
     internal interface ICRUD<T>
     {
         List<T> GetAll();
+
         void Insert(T employees);
 
         void Update(T employees);

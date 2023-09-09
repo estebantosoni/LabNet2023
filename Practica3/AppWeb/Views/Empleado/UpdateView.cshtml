@@ -1,0 +1,17 @@
+﻿@model Entidades.DTO.EmployeesDTO
+
+@{
+    ViewBag.Title = "Pagina Actualizar Empleado";
+}
+
+<h1>Actualizar Empleado</h1>
+
+@using (Html.BeginForm("Update", "Empleado", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.ID)
+    <label class="p-2">Nombre: </label> @Html.TextBoxFor(model => model.FirstName)
+    <p />
+    <label class="p-2">Apellido: </label> @Html.TextBoxFor(model => model.LastName)
+    <p />
+    <input type="submit" class="btn btn-success" value="Actualizar" />
+}

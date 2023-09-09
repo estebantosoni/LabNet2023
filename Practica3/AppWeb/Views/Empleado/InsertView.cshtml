@@ -1,0 +1,15 @@
+﻿@model Entidades.DTO.EmployeesDTO
+
+@{
+    ViewBag.Title = "Pagina Insertar Empleado";
+}
+
+<h1>Insertar nuevo empleado</h1>
+@using (Html.BeginForm("Insert", "Empleado", FormMethod.Post))
+{
+    <label class="p-2">Nombre: </label> @Html.TextBoxFor(e => e.FirstName)
+    <p />
+    <label class="p-2">Apellido: </label> @Html.TextBoxFor(e => e.LastName)
+    <p />
+    <input type="submit" class="btn btn-success" value="Guardar" />
+}

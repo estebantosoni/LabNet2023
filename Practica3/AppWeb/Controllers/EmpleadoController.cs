@@ -1,4 +1,5 @@
-﻿using Entidades.DTO;
+﻿using Entidades;
+using Entidades.DTO;
 using Negocio.Services;
 using System;
 using System.Collections.Generic;
@@ -29,10 +30,16 @@ namespace AppWeb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
-            List<EmployeesDTO> listEmployeesDTO = empleadoService.GetAll();
-
-            return View(listEmployeesDTO);
+            try
+            {
+                List<EmployeesDTO> listEmployeesDTO = empleadoService.GetAll();
+                return View(listEmployeesDTO);
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Ocurrio un error al traer la lista de empleados.";
+                return RedirectToAction("Home");
+            }
         }
 
         // POST: Empleado
@@ -40,19 +47,49 @@ namespace AppWeb.Controllers
         [HttpPost]
         public ActionResult Insert(EmployeesDTO employeeDTO)
         {
-            empleadoService.Insert(employeeDTO);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    empleadoService.Insert(employeeDTO);
+                    TempData["SuccessMessage"] = "Empleado creado exitosamente.";
+                    return RedirectToAction("Index");
+                }
+                return View("InsertView", employeeDTO);
 
-            return RedirectToAction("Index");
+            }
+            catch(Exception) {
+
+                TempData["ErrorMessage"] = "Ocurrio un error al crear al empleado.";
+                return RedirectToAction("Index");
+
+            }
+
+
         }
 
         // PUT: Empleado
 
         [HttpPost]
-        public ActionResult Update(EmployeesDTO employeesDTO)
+        public ActionResult Update(EmployeesDTO employeeDTO)
         {
-            empleadoService.Update(employeesDTO);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    empleadoService.Update(employeeDTO);
+                    TempData["SuccessMessage"] = "Empleado actualizado exitosamente.";
+                    return RedirectToAction("Index");
+                }
+                return View("UpdateView", employeeDTO);
 
-            return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                TempData["ErrorMessage"] = "Ocurrio un error al actualizar al empleado.";
+                return RedirectToAction("Index");
+            }
+
         }
 
         // DELETE: Empleado
@@ -61,12 +98,15 @@ namespace AppWeb.Controllers
             try
             {
                 empleadoService.Delete(id);
+                TempData["SuccessMessage"] = "Empleado eliminado exitosamente.";
                 return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                return RedirectToAction("Index", "Error");
+                TempData["ErrorMessage"] = "Ocurrio un error al eliminar al empleado.";
+                return RedirectToAction("Index");
             }
+
         }
     }
 }

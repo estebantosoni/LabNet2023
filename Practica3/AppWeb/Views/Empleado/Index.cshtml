@@ -43,6 +43,11 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Nombre completo</th>
+                <th scope="col"> Titulo </th>
+                <th scope="col"> Fecha de contratacion </th>
+                <th scope="col"> Ciudad </th>
+                <th scope="col"> Pais </th>
+                <th scope="col"> Teléfono </th>
                 <th scope="col"> Acciones </th>
             </tr>
         </thead>
@@ -53,6 +58,11 @@
                     <tr>
                         <td>@item.ID</td>
                         <td>@item.FirstName @item.LastName</td>
+                        <td>@item.Title</td>
+                        <td>@item.HireDate</td>
+                        <td>@item.City</td>
+                        <td>@item.Country</td>
+                        <td>@item.HomePhone</td>
                         <td>
                             <div class="link-button">
                                 @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "nav-link" })
@@ -67,6 +77,38 @@
             }
         </tbody>
     </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+
+        function mostrarResultado() {
+            var successMessage = '@TempData["SuccessMessage"]';
+            var errorMessage = '@TempData["ErrorMessage"]';
+
+            if (successMessage) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: successMessage,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+
+            if (errorMessage) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ups...',
+                    text: errorMessage,
+                })
+            }
+        }
+
+        mostrarResultado();
+    </script>
 </body>
+
+
 
 

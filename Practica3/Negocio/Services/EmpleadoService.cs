@@ -14,81 +14,60 @@ namespace Negocio.Services
 
         public List<EmployeesDTO> GetAll()
         {
+            List<Employees> listEmployees = empleados.GetAll();
 
-            try
-            {
-                List<Employees> listEmployees = empleados.GetAll();
+            List<EmployeesDTO> listEmployeesDTO = listEmployees.Select(
+                e => new EmployeesDTO
+                {
+                    ID = e.EmployeeID,
+                    FirstName = e.FirstName,
+                    LastName = e.LastName,
+                    Title = e.Title,
+                    HireDate = e.HireDate,
+                    City = e.City,
+                    Country = e.Country,
+                    HomePhone = e.HomePhone,
+                }).ToList();
 
-                List<EmployeesDTO> listEmployeesDTO = listEmployees.Select(
-                    e => new EmployeesDTO
-                    {
-                        ID = e.EmployeeID,
-                        FirstName = e.FirstName,
-                        LastName = e.LastName,
-                    }).ToList();
-
-                return listEmployeesDTO;
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
+            return listEmployeesDTO;
         }
 
-        public void Insert(EmployeesDTO employeeDTO)
+        public void Insert(EmployeesDTO e)
         {
-            try
+            Employees emp = new Employees
             {
-                Employees emp = new Employees
-                {
-                    FirstName = employeeDTO.FirstName,
-                    LastName = employeeDTO.LastName,
-                };
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Title = e.Title,
+                HireDate = e.HireDate,
+                City = e.City,
+                Country = e.Country,
+                HomePhone = e.HomePhone
+            };
 
-                empleados.Insert(emp);
-
-            }
-            catch (Exception) {
-
-                throw new Exception();
-
-            }
+            empleados.Insert(emp);
         }
 
-        public void Update(EmployeesDTO employeedDTO)
+        public void Update(EmployeesDTO e)
         {
-            try
+            Employees employee = new Employees
             {
-                Employees employee = new Employees
-                {
-                    EmployeeID = employeedDTO.ID,
-                    FirstName = employeedDTO.FirstName,
-                    LastName = employeedDTO.LastName
-                };
+                EmployeeID = e.ID,
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Title = e.Title,
+                HireDate = e.HireDate,
+                City = e.City,
+                Country = e.Country,
+                HomePhone = e.HomePhone,
+            };
 
-                empleados.Update(employee);
-
-            }
-            catch (Exception)
-            {
-
-                throw new Exception();
-
-            }
+            empleados.Update(employee);
         }
 
         public void Delete(int id)
         {
-            try
-            {
-
-                empleados.Delete(id);
-
-            }
-            catch (Exception)
-            {
-                throw new Exception();
-            }
+            empleados.Delete(id);
         }
     }
 }

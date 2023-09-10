@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,11 @@ namespace Negocio
 
         public void Update(Employees employees)
         {
-            var emp = context.Employees.Find(employees.EmployeeID);
-            emp.FirstName = employees.FirstName;
-            emp.LastName = employees.LastName;
+            context.Employees.Attach(employees);
+
+            var entry = context.Entry(employees);
+            entry.State = EntityState.Modified;
+
             context.SaveChanges();
         }
 

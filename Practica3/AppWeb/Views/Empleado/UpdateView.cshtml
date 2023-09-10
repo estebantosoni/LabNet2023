@@ -9,9 +9,26 @@
 @using (Html.BeginForm("Update", "Empleado", FormMethod.Post))
 {
     @Html.HiddenFor(model => model.ID)
-    <label class="p-2">Nombre: </label> @Html.TextBoxFor(model => model.FirstName)
+    <label class="p-2">Nombre: </label> @Html.TextBoxFor(e => e.FirstName)
+    <label>@Html.ValidationMessageFor(e => e.FirstName, "", new { @class = "text-danger" })</label>
     <p />
-    <label class="p-2">Apellido: </label> @Html.TextBoxFor(model => model.LastName)
+    <label class="p-2">Apellido: </label> @Html.TextBoxFor(e => e.LastName)
+    <label> @Html.ValidationMessageFor(e => e.LastName, "", new { @class = "text-danger" })</label>
+    <p />
+    <label class="p-2">Titulo: </label> @Html.TextBoxFor(e => e.Title)
+    <label> @Html.ValidationMessageFor(e => e.Title, "", new { @class = "text-danger" })</label>
+    <p />
+    <label class="p-2">Fecha de contratacion: </label> @Html.TextBoxFor(e => e.HireDate, new { placeholder = "MM/dd/yyyy" })
+    <label> @Html.ValidationMessageFor(e => e.HireDate, "", new { @class = "text-danger" })</label>
+    <p />
+    <label class="p-2">Ciudad: </label> @Html.TextBoxFor(e => e.City)
+    <label> @Html.ValidationMessageFor(e => e.City, "", new { @class = "text-danger" })</label>
+    <p />
+    <label class="p-2">Pais: </label> @Html.TextBoxFor(e => e.Country)
+    <label> @Html.ValidationMessageFor(e => e.Country, "", new { @class = "text-danger" })</label>
+    <p />
+    <label class="p-2">Nro de teléfono: </label> @Html.TextBoxFor(e => e.HomePhone, new { placeholder = "(206) 555-9857" })
+    <label> @Html.ValidationMessageFor(e => e.HomePhone, "", new { @class = "text-danger" })</label>
     <p />
     <input type="submit" class="btn btn-success" value="Actualizar" />
 }

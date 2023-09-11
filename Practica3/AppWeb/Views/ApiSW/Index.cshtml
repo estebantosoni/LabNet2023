@@ -1,0 +1,31 @@
+﻿@model List<AppWeb.Models.PersonajesSW>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Star Wars</title>
+</head>
+<body>
+    <div>
+        @foreach (var item in Model)
+        {
+            <div>
+                <p>Nombre: @item.Name</p>
+                <p>Altura: @item.Height</p>
+                <p>Peso: @item.Mass</p>
+                <p>Color de pelo: @item.Hair_color</p>
+                <p>Color de piel: @item.Skin_color</p>
+                <p>Color de ojos: @item.Eye_color</p>
+                <p>Año de nacimiento: @item.Birth_year</p>
+                <p>Sexo: @item.Gender</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

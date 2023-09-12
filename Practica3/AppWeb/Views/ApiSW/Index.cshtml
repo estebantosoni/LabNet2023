@@ -1,7 +1,7 @@
 ﻿@model List<AppWeb.Models.PersonajesSW>
 
 @{
-    Layout = null;
+    ViewBag.Title = "API Star Wars";
 }
 
 <!DOCTYPE html>
@@ -11,21 +11,43 @@
     <meta name="viewport" content="width=device-width" />
     <title>Star Wars</title>
 </head>
+
 <body>
-    <div>
-        @foreach (var item in Model)
-        {
-            <div>
-                <p>Nombre: @item.Name</p>
-                <p>Altura: @item.Height</p>
-                <p>Peso: @item.Mass</p>
-                <p>Color de pelo: @item.Hair_color</p>
-                <p>Color de piel: @item.Skin_color</p>
-                <p>Color de ojos: @item.Eye_color</p>
-                <p>Año de nacimiento: @item.Birth_year</p>
-                <p>Sexo: @item.Gender</p>
-            </div>
-        }
-    </div>
+
+    <h1> Listado de personajes de Star Wars</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col"> Altura </th>
+                <th scope="col"> Peso </th>
+                <th scope="col"> Color de pelo </th>
+                <th scope="col"> Color de piel </th>
+                <th scope="col"> Color de ojos </th>
+                <th scope="col"> Año de nacimiento </th>
+                <th scope="col"> Sexo </th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Height</td>
+                        <td>@item.Mass</td>
+                        <td>@item.Hair_color</td>
+                        <td>@item.Skin_color</td>
+                        <td>@item.Eye_color</td>
+                        <td>@item.Birth_year</td>
+                        <td>@item.Gender</td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+
 </body>
 </html>

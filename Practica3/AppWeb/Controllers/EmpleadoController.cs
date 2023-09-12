@@ -3,6 +3,8 @@ using Entidades.DTO;
 using Negocio.Services;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -101,8 +103,12 @@ namespace AppWeb.Controllers
                 TempData["SuccessMessage"] = "Empleado eliminado exitosamente.";
                 return RedirectToAction("Index");
             }
+            catch(DbUpdateException) {
+                TempData["ErrorMessage"] = "No se puede eliminar el empleado porque hay campos que tienen referencias a campos de otras tablas.";
+                return RedirectToAction("Index");
+            }
             catch (Exception)
-            {
+            { 
                 TempData["ErrorMessage"] = "Ocurrio un error al eliminar al empleado.";
                 return RedirectToAction("Index");
             }

@@ -12,12 +12,7 @@ using AppWeb.Models;
 namespace AppWeb.Controllers
 {
     public class ApiSWController : Controller
-    {/*
-        public ActionResult Index()
-        {
-            return View();
-        }*/
-
+    {
         public async Task<ActionResult> Index()
         {
             using (var httpClient = new HttpClient())

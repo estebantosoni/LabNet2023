@@ -210,7 +210,7 @@ namespace Presentacion
 
         public static void ConsultaSimpleEmpleados(Empleados e)
         {
-            int i = e.CountEmployees();
+            int i = e.Count();
             Console.WriteLine("\nCantidad de empleados: " + i);
 
             List<Employees> employees = e.GetAll();

@@ -10,7 +10,7 @@ namespace Negocio
 {
     public class Empleados : Base, ICRUD<Employees>
     {
-        public int CountEmployees()
+        public int Count()
         {
             return context.Employees.Count();
         }

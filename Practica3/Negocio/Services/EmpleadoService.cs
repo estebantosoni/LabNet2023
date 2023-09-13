@@ -32,6 +32,24 @@ namespace Negocio.Services
             return listEmployeesDTO;
         }
 
+        public EmployeesDTO Find(int id)
+        {
+            Employees e = empleados.Find(id);
+            EmployeesDTO employeeDTO = new EmployeesDTO
+            {
+                ID = e.EmployeeID,
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                Title = e.Title,
+                HireDate = e.HireDate,
+                City = e.City,
+                Country = e.Country,
+                HomePhone = e.HomePhone,
+            };
+            return employeeDTO;
+
+        }
+
         public void Insert(EmployeesDTO e)
         {
             Employees emp = new Employees

@@ -14,7 +14,7 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   getAllEmployees(): Observable<EmployeeDTO>{
-    let url = `${this.apiUrl}/empleado/GetEmpleados`;
+    let url = `${this.apiUrl}/empleado`;
     return this.http.get<EmployeeDTO>(url);
   }
 

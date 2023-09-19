@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
             }
             catch (NullReferenceException)
             {
-                return BadRequest("El ID ingresado no corresponde a ningun empleado.");
+                return StatusCode(HttpStatusCode.NotFound);
             }
             catch (Exception)
             {
@@ -59,8 +59,8 @@ namespace WebAPI.Controllers
                 }
 
                 empleadoService.Insert(employee);
-
-                return CreatedAtRoute("DefaultApi", new { id = employee.ID }, employee);
+                
+                return StatusCode(HttpStatusCode.OK);
             }
             catch (NullReferenceException)
             {
@@ -85,7 +85,7 @@ namespace WebAPI.Controllers
 
                 empleadoService.Update(employee);
 
-                return Ok("El empleado ha sido actualizado exitosamente.");
+                return StatusCode(HttpStatusCode.OK);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -105,15 +105,15 @@ namespace WebAPI.Controllers
             {
                 empleadoService.Delete(id);
 
-                return Ok("El empleado fue eliminado exitosamente.");
+                return StatusCode(HttpStatusCode.OK);
             }
             catch (InvalidOperationException)
             {
-                return BadRequest("El ID ingresado no corresponde a ningun empleado.");
+                return StatusCode(HttpStatusCode.NotFound);
             }
             catch (DbUpdateException)
             {
-                return BadRequest("No se puede eliminar el empleado debido a que tiene datos que tienen referencias con datos de otras tablas.");
+                return StatusCode(HttpStatusCode.Conflict);
             }
             catch (Exception)
             {

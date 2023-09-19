@@ -1,0 +1,52 @@
+<h2>Agregar nuevo empleado</h2>
+
+<form [formGroup]="employeeForm" (submit)="onSubmit()">
+    <label for="firstName">Nombre:</label>
+    <input type="text" id="firstName" formControlName="firstName">
+    <div *ngIf="employeeForm.get('firstName')?.invalid && (employeeForm.get('firstName')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('firstName')?.hasError('required')" class="input-error">Nombre es requerido.</div>
+        <div *ngIf="employeeForm.get('firstName')?.hasError('pattern')" class="input-error">Nombre solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('firstName')?.hasError('maxlength')" class="input-error">Nombre debe tener 20 caracteres maximo.</div>
+    </div>
+
+    <label for="lastName">Apellido:</label>
+    <input type="text" id="lastName" formControlName="lastName">
+    <div *ngIf="employeeForm.get('lastName')?.invalid && (employeeForm.get('lastName')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('lastName')?.hasError('required')" class="input-error">Apellido es requerido.</div>
+        <div *ngIf="employeeForm.get('lastName')?.hasError('pattern')" class="input-error">Apellido solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('lastName')?.hasError('maxlength')" class="input-error">Apellido debe tener 20 caracteres maximo.</div>
+    </div>
+
+    <label for="title">Titulo:</label>
+    <input type="text" id="title" formControlName="title">
+    <div *ngIf="employeeForm.get('title')?.invalid && (employeeForm.get('title')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('title')?.hasError('pattern')" class="input-error">Titulo solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('title')?.hasError('maxlength')" class="input-error">Titulo debe tener 30 caracteres maximo.</div>
+    </div>
+    
+    <label for="hireDate">Fecha de contratacion:</label>
+    <input type="date" id="hireDate" formControlName="hireDate">
+
+    <label for="city">Ciudad:</label>
+    <input type="text" id="city" formControlName="city">
+    <div *ngIf="employeeForm.get('city')?.invalid && (employeeForm.get('city')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('city')?.hasError('pattern')" class="input-error">Ciudad solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('city')?.hasError('maxlength')" class="input-error">Ciudad debe tener 20 caracteres maximo.</div>
+    </div>
+
+    <label for="country">Pais:</label>
+    <input type="text" id="country" formControlName="country">
+    <div *ngIf="employeeForm.get('country')?.invalid && (employeeForm.get('country')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('country')?.hasError('pattern')" class="input-error">Pais solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('country')?.hasError('maxlength')" class="input-error">Pais debe tener 20 caracteres maximo.</div>
+    </div>
+
+    <label for="homePhone">Nro. de telefono:</label>
+    <input type="tel" id="homePhone" formControlName="homePhone" placeholder="(341) 555-9857">
+    <div *ngIf="employeeForm.get('homePhone')?.invalid && (employeeForm.get('homePhone')?.touched || formSubmitted)">
+        <div *ngIf="employeeForm.get('homePhone')?.hasError('pattern')" class="input-error">Telefono debe tener el formato (123) 456-7890.</div>
+        <div *ngIf="employeeForm.get('homePhone')?.hasError('maxlength')" class="input-error">Telefono debe tener 14 caracteres maximo.</div>
+    </div>
+
+    <button type="submit">Guardar</button>
+  </form>

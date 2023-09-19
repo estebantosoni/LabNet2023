@@ -24,7 +24,7 @@ namespace Entidades.DTO
         public string Title { get; set; }
 
         [DataType(DataType.Date, ErrorMessage = "El campo Fecha de contratacion debe ser una fecha válida.")]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? HireDate { get; set; }
 
         [StringLength(50, ErrorMessage = "El campo Ciudad no puede tener más de 30 caracteres.")]

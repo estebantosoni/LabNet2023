@@ -8,13 +8,13 @@
         <ng-template #error>
             <ng-container *ngIf="data.n == 1; else error2">
                 <p class="text">¡{{ data.message }}!</p>
-                <h3>Es posible que el servidor no este respondiendo</h3>    
+                <h3>Es posible que el servidor no este respondiendo.</h3>    
             </ng-container>
         </ng-template>
 
         <ng-template #error2>
             <p class="text">¡{{ data.message }}!</p>
-            <h3>Es posible que el empleado tenga referencias con datos de otras tablas.</h3>
+            <h3>Es posible que el empleado tenga referencias con otras tablas de la base de datos.</h3>
         </ng-template>
         <button class="close-button" (click)="closePopup()">Cerrar</button>
     </div>

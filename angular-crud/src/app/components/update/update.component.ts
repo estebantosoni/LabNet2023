@@ -1,4 +1,4 @@
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -50,7 +50,7 @@ export class UpdateComponent {
     if (this.employeeForm.valid) {
       const employeeData: EmployeesDTO = this.employeeForm.value;
       this.employeeService.updateEmployee(employeeData).subscribe({
-        next: (response:HttpResponse<any>) => {
+        next: (response:HttpResponse<HttpStatusCode>) => {
         if(response.status == 200){
           this.dialogService.openSuccessDialog('Empleado actualizado exitosamente',true);
           this.router.navigate(['/employee']);

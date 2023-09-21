@@ -23,19 +23,19 @@ export class EmployeeService {
     return this.http.get<EmployeesDTO>(url);
   }
 
-  insertEmployee(employee: EmployeesDTO) : Observable<HttpResponse<any>>{
+  insertEmployee(employee: EmployeesDTO) : Observable<HttpResponse<HttpStatusCode>>{
     let url = `${this.apiUrl}/empleado`;
     return this.http.post<HttpStatusCode>(url,employee, { observe: 'response' });
   }
 
-  updateEmployee(employee: EmployeesDTO) : Observable<HttpResponse<any>>{
+  updateEmployee(employee: EmployeesDTO) : Observable<HttpResponse<HttpStatusCode>>{
     let url = `${this.apiUrl}/empleado/${employee.getID}`;
     return this.http.put<HttpStatusCode>(url,employee, { observe: 'response' });
   }
 
-  deleteEmployee(id: number) : Observable<HttpResponse<any>>{
+  deleteEmployee(id: number) : Observable<HttpResponse<HttpStatusCode>>{
     let url = `${this.apiUrl}/empleado/${id}`;
-    return this.http.delete(url, { observe: 'response' });
+    return this.http.delete<HttpStatusCode>(url, { observe: 'response' });
   }
 
 }

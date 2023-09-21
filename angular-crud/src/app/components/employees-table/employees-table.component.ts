@@ -51,7 +51,7 @@ export class EmployeesTableComponent {
     this.dialogService.openConfirmationDialog().subscribe((confirmed) => {
       if (confirmed) {
           this.employeeService.deleteEmployee(employeeId).subscribe({
-            next: (response:HttpResponse<any>) => {
+            next: (response:HttpResponse<HttpStatusCode>) => {
               if(response.status == 200){
                 this.dialogService.openSuccessDialog("Empleado eliminado exitosamente",true).subscribe(() => {
                     window.location.reload();

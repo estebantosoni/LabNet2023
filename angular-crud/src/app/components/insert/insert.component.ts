@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service'; // Asegúrate de importar tu servicio
 import { EmployeesDTO } from 'src/app/models/employeesDTO';
 import { DialogService } from 'src/app/services/dialog.service';
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse, HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-insert',
@@ -38,7 +38,7 @@ export class InsertComponent {
     if (this.employeeForm.valid) {
       const employeeData: EmployeesDTO = this.employeeForm.value;
       this.employeeService.insertEmployee(employeeData).subscribe({
-        next: (response:HttpResponse<any>) => {
+        next: (response:HttpResponse<HttpStatusCode>) => {
           if(response.status == 200){
             this.dialogService.openSuccessDialog('Empleado agregado exitosamente',true);
             this.router.navigate(['/employee']);

@@ -29,7 +29,7 @@
     
     <label for="HireDate">Fecha de contratacion:</label>
     <div class="center-date">
-        <input matInput [matDatepicker]="picker" id="HireDate" formControlName="HireDate">
+        <input matInput [matDatepicker]="picker" id="HireDate" formControlName="HireDate" readonly>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </div>

@@ -11,12 +11,13 @@
     z-index: 1000;
 }
   
-.popup-content {
+.container {
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
+    width: 400px;
 }
 
 .close-button {
@@ -34,7 +35,7 @@
 }
 
 .mat-icon{
-  font-size: 20px;
+  font-size: 25px;
   margin: 10px;
 }
 

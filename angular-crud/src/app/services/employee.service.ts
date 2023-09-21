@@ -1,7 +1,7 @@
 import { HttpClient, HttpResponse, HttpStatusCode } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { EmployeesDTO } from 'src/app/models/employeesDTO';
 
 @Injectable({

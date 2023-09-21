@@ -14,9 +14,9 @@ import { DialogService } from 'src/app/services/dialog.service';
 export class EmployeesTableComponent {
   
   public employee: EmployeesDTO[] = [];
-  displayedColumns: string[] = ['ID', 'FirstName', 'LastName', 'Title', 
+  protected displayedColumns: string[] = ['ID', 'FirstName', 'LastName', 'Title', 
                               'HireDate', 'City', 'Country', 'HomePhone', 'Acciones'];
-  dataSource = new MatTableDataSource<EmployeesDTO>();
+  protected dataSource = new MatTableDataSource<EmployeesDTO>();
 
   constructor(private employeeService: EmployeeService, private router: Router,
     private dialogService: DialogService,){
@@ -50,13 +50,15 @@ export class EmployeesTableComponent {
   delete(employeeId: number){
     this.dialogService.openConfirmationDialog().subscribe((confirmed) => {
       if (confirmed) {
-          this.employeeService.deleteEmployee(employeeId).subscribe((response:HttpResponse<any>) => {
-            if(response.status === 200){
-              this.dialogService.openSuccessDialog("Empleado eliminado exitosamente",true).subscribe(() => {
-                  window.location.reload();
-              });
-            }
-            else{
+          this.employeeService.deleteEmployee(employeeId).subscribe({
+            next: (response:HttpResponse<any>) => {
+              if(response.status == 200){
+                this.dialogService.openSuccessDialog("Empleado eliminado exitosamente",true).subscribe(() => {
+                    window.location.reload();
+                });
+              }
+            },
+            error: () => {
               this.dialogService.openSuccessDialog("No se puede eliminar al empleado", false);
             }
           });

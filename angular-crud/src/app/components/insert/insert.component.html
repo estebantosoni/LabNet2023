@@ -7,6 +7,7 @@
         <div *ngIf="employeeForm.get('firstName')?.hasError('required')" class="input-error">Nombre es requerido.</div>
         <div *ngIf="employeeForm.get('firstName')?.hasError('pattern')" class="input-error">Nombre solo debe contener letras.</div>
         <div *ngIf="employeeForm.get('firstName')?.hasError('maxlength')" class="input-error">Nombre debe tener 20 caracteres maximo.</div>
+        <div *ngIf="employeeForm.get('firstName')?.hasError('minlength')" class="input-error">Nombre debe tener 3 caracteres minimo.</div>
     </div>
 
     <label for="lastName">Apellido:</label>
@@ -15,6 +16,7 @@
         <div *ngIf="employeeForm.get('lastName')?.hasError('required')" class="input-error">Apellido es requerido.</div>
         <div *ngIf="employeeForm.get('lastName')?.hasError('pattern')" class="input-error">Apellido solo debe contener letras.</div>
         <div *ngIf="employeeForm.get('lastName')?.hasError('maxlength')" class="input-error">Apellido debe tener 20 caracteres maximo.</div>
+        <div *ngIf="employeeForm.get('lastName')?.hasError('minlength')" class="input-error">Apellido debe tener 3 caracteres minimo.</div>
     </div>
 
     <label for="title">Titulo:</label>
@@ -22,6 +24,7 @@
     <div *ngIf="employeeForm.get('title')?.invalid && (employeeForm.get('title')?.touched || formSubmitted)">
         <div *ngIf="employeeForm.get('title')?.hasError('pattern')" class="input-error">Titulo solo debe contener letras.</div>
         <div *ngIf="employeeForm.get('title')?.hasError('maxlength')" class="input-error">Titulo debe tener 30 caracteres maximo.</div>
+        <div *ngIf="employeeForm.get('title')?.hasError('minlength')" class="input-error">Titulo debe tener 3 caracteres minimo.</div>
     </div>
     
     <label for="hireDate">Fecha de contratacion:</label>
@@ -32,13 +35,15 @@
     <div *ngIf="employeeForm.get('city')?.invalid && (employeeForm.get('city')?.touched || formSubmitted)">
         <div *ngIf="employeeForm.get('city')?.hasError('pattern')" class="input-error">Ciudad solo debe contener letras.</div>
         <div *ngIf="employeeForm.get('city')?.hasError('maxlength')" class="input-error">Ciudad debe tener 20 caracteres maximo.</div>
+        <div *ngIf="employeeForm.get('city')?.hasError('minlength')" class="input-error">Ciudad debe tener 3 caracteres minimo.</div>
     </div>
 
     <label for="country">Pais:</label>
-    <input type="text" id="country" formControlName="country">
+    <input type="text" id="country" formControlName="country" autocomplete="country">
     <div *ngIf="employeeForm.get('country')?.invalid && (employeeForm.get('country')?.touched || formSubmitted)">
         <div *ngIf="employeeForm.get('country')?.hasError('pattern')" class="input-error">Pais solo debe contener letras.</div>
         <div *ngIf="employeeForm.get('country')?.hasError('maxlength')" class="input-error">Pais debe tener 20 caracteres maximo.</div>
+        <div *ngIf="employeeForm.get('country')?.hasError('minlength')" class="input-error">Pais debe tener 3 caracteres minimo.</div>
     </div>
 
     <label for="homePhone">Nro. de telefono:</label>

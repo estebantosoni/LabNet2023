@@ -41,3 +41,8 @@ button[type="submit"]:hover {
   color: red;
   margin-bottom: 10px;
 }
+
+.center-date{
+  display: flex;
+  align-items: center;
+}

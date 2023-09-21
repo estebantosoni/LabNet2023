@@ -13,8 +13,8 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class InsertComponent {
 
-  employeeForm: FormGroup;
-  formSubmitted: boolean = false;
+  protected employeeForm: FormGroup;
+  protected formSubmitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,27 +23,28 @@ export class InsertComponent {
     private dialogService: DialogService
   ) {
     this.employeeForm = this.fb.group({
-      firstName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      lastName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      title: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(30)]],
+      firstName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      lastName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      title: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(30)]],
       hireDate: [new Date()],
-      city: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      country: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
+      city: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      country: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
       homePhone: ['',[Validators.pattern(/^\(\d{1,3}\)\s\d{3}-\d{4}$/), Validators.maxLength(14)]]
     });
   }
     
   onSubmit() {
     this.formSubmitted= true;
-
     if (this.employeeForm.valid) {
       const employeeData: EmployeesDTO = this.employeeForm.value;
-      this.employeeService.insertEmployee(employeeData).subscribe((response:HttpResponse<any>) => {
-        if(response.status == 200){
-          this.dialogService.openSuccessDialog('Empleado agregado exitosamente',true);
-          this.router.navigate(['/employee']);
-        }
-        else{
+      this.employeeService.insertEmployee(employeeData).subscribe({
+        next: (response:HttpResponse<any>) => {
+          if(response.status == 200){
+            this.dialogService.openSuccessDialog('Empleado agregado exitosamente',true);
+            this.router.navigate(['/employee']);
+          }
+        },
+        error: () => {
           this.dialogService.openSuccessDialog('No ha sido posible agregar al empleado',false);
           this.router.navigate(['/employee']);
         }

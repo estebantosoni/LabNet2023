@@ -13,10 +13,9 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class UpdateComponent {
 
-  employeeForm: FormGroup;
-  formSubmitted: boolean = false;
-  employeeD : EmployeesDTO = new EmployeesDTO();
-  
+  protected employeeForm: FormGroup;
+  protected formSubmitted: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private employeeService: EmployeeService,
@@ -26,12 +25,12 @@ export class UpdateComponent {
   ) {
     this.employeeForm = this.fb.group({
       ID: [null],
-      FirstName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      LastName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      Title: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(30)]],
+      FirstName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      LastName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      Title: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(30)]],
       HireDate: [new Date()],
-      City: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
-      Country: ['',[Validators.pattern('[A-Za-z]+'), Validators.maxLength(20)]],
+      City: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      Country: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
       HomePhone: ['',[Validators.pattern(/^\(\d{1,3}\)\s\d{3}-\d{4}$/), Validators.maxLength(14)]]
     });
   }
@@ -39,7 +38,7 @@ export class UpdateComponent {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const employeeId = +params['id'];
-      this.employeeService.getEmployeeById(employeeId).subscribe((employeeData: EmployeesDTO) => {
+      this.employeeService.getEmployeeById(employeeId).subscribe((employeeData : EmployeesDTO) => {
         this.employeeForm.patchValue(employeeData);
       });
     });
@@ -47,15 +46,16 @@ export class UpdateComponent {
 
   onSubmit() {
     this.formSubmitted= true;
-
+    
     if (this.employeeForm.valid) {
       const employeeData: EmployeesDTO = this.employeeForm.value;
-      this.employeeService.updateEmployee(employeeData).subscribe((response:HttpResponse<any>) => {
+      this.employeeService.updateEmployee(employeeData).subscribe({
+        next: (response:HttpResponse<any>) => {
         if(response.status == 200){
           this.dialogService.openSuccessDialog('Empleado actualizado exitosamente',true);
           this.router.navigate(['/employee']);
-        }
-        else{
+        }},
+        error: () => {
           this.dialogService.openSuccessDialog('No ha sido posible actualizar al empleado',false);
           this.router.navigate(['/employee']);
         }

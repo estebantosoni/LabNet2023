@@ -1,11 +1,10 @@
 <div class="popup">
-    <div class="popup-content">
+    <div class="container">
         <mat-icon class="mat-icon" [style.color]="data.b ? 'green' : 'red'">{{ data.b ? 'check' : 'error' }}</mat-icon>
         <ng-container *ngIf="data.b; else error">
             <p class="text">¡{{ data.message }}!</p>
         </ng-container>
         <ng-template #error>
-            <mat-icon class="mat-icon" style="color: red;">error</mat-icon>
             <p class="text">¡{{ data.message }}!</p>
             <h3>Es posible que el empleado tenga referencias con datos de otras tablas.</h3>
         </ng-template>

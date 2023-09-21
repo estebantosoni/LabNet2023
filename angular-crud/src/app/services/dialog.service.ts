@@ -10,13 +10,13 @@ import { Observable } from 'rxjs/internal/Observable';
 export class DialogService {
   constructor(private dialog: MatDialog) {}
 
-  openSuccessDialog(message: string, b: boolean): Observable<boolean> {
+  openSuccessDialog(message: string, n: number): Observable<boolean> {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     
     const dialogRef = this.dialog.open(SuccessDialogComponent, {
-      data: { message, b, dialogConfig }
+      data: { message, n, dialogConfig }
     });
 
     return dialogRef.afterClosed();

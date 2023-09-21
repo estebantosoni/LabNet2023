@@ -40,12 +40,12 @@ export class InsertComponent {
       this.employeeService.insertEmployee(employeeData).subscribe({
         next: (response:HttpResponse<HttpStatusCode>) => {
           if(response.status == 200){
-            this.dialogService.openSuccessDialog('Empleado agregado exitosamente',true);
+            this.dialogService.openSuccessDialog('Empleado agregado exitosamente',0);
             this.router.navigate(['/employee']);
           }
         },
         error: () => {
-          this.dialogService.openSuccessDialog('No ha sido posible agregar al empleado',false);
+          this.dialogService.openSuccessDialog('No ha sido posible agregar al empleado',1);
           this.router.navigate(['/employee']);
         }
       });

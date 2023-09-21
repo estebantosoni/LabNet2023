@@ -52,11 +52,11 @@ export class UpdateComponent {
       this.employeeService.updateEmployee(employeeData).subscribe({
         next: (response:HttpResponse<HttpStatusCode>) => {
         if(response.status == 200){
-          this.dialogService.openSuccessDialog('Empleado actualizado exitosamente',true);
+          this.dialogService.openSuccessDialog('Empleado actualizado exitosamente',0);
           this.router.navigate(['/employee']);
         }},
         error: () => {
-          this.dialogService.openSuccessDialog('No ha sido posible actualizar al empleado',false);
+          this.dialogService.openSuccessDialog('No ha sido posible actualizar al empleado',1);
           this.router.navigate(['/employee']);
         }
       });

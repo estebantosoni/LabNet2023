@@ -20,7 +20,7 @@ namespace Entidades.DTO
         public string LastName { get; set; }
 
         [StringLength(50, ErrorMessage = "El campo Titulo no puede tener más de 50 caracteres.")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "El campo Titulo debe contener solo letras.")]
+        [RegularExpression(@"^[a-zA-Z, \s]+$", ErrorMessage = "El campo Titulo debe contener solo letras.")]
         public string Title { get; set; }
 
         [DataType(DataType.Date, ErrorMessage = "El campo Fecha de contratacion debe ser una fecha válida.")]

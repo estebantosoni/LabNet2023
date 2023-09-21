@@ -33,8 +33,8 @@ export class EmployeesTableComponent {
         this.employee = result;
         this.dataSource.data = this.employee;
       },
-      error:(e) => {
-        console.log(e);
+      error:() => {
+        this.dialogService.openSuccessDialog("No ha sido posible recuperar la lista de empleados", 1);
       }
     });
   }
@@ -53,13 +53,13 @@ export class EmployeesTableComponent {
           this.employeeService.deleteEmployee(employeeId).subscribe({
             next: (response:HttpResponse<HttpStatusCode>) => {
               if(response.status == 200){
-                this.dialogService.openSuccessDialog("Empleado eliminado exitosamente",true).subscribe(() => {
+                this.dialogService.openSuccessDialog("Empleado eliminado exitosamente",0).subscribe(() => {
                     window.location.reload();
                 });
               }
             },
             error: () => {
-              this.dialogService.openSuccessDialog("No se puede eliminar al empleado", false);
+              this.dialogService.openSuccessDialog("No se puede eliminar al empleado", 2);
             }
           });
           

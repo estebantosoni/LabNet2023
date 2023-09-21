@@ -27,10 +27,10 @@ export class UpdateComponent {
       ID: [null],
       FirstName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
       LastName: ['',[Validators.required, Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
-      Title: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(30)]],
+      Title: ['',[Validators.pattern('([a-zA-Z]{3,}(?:, |$))*[a-zA-Z]{3,}'), Validators.minLength(3), Validators.maxLength(30)]],
       HireDate: [new Date()],
       City: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
-      Country: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(3), Validators.maxLength(20)]],
+      Country: ['',[Validators.pattern('[A-Za-z]+'), Validators.minLength(2), Validators.maxLength(20)]],
       HomePhone: ['',[Validators.pattern(/^\(\d{1,3}\)\s\d{3}-\d{4}$/), Validators.maxLength(14)]]
     });
   }

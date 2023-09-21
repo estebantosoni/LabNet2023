@@ -45,9 +45,9 @@
     <label for="Country">Pais:</label>
     <input type="text" id="Country" formControlName="Country" autocomplete="country">
     <div *ngIf="employeeForm.get('Country')?.invalid && (employeeForm.get('Country')?.touched || formSubmitted)">
-        <div *ngIf="employeeForm.get('Country')?.hasError('pattern')" class="input-error">Pais solo debe contener letras.</div>
+        <div *ngIf="employeeForm.get('Country')?.hasError('pattern')" class="input-error">Pais solo debe contener letras y tener el formato 'title, title2' si desea agregar mas de un titulo.</div>
         <div *ngIf="employeeForm.get('Country')?.hasError('maxlength')" class="input-error">Pais debe tener 20 caracteres maximo.</div>
-        <div *ngIf="employeeForm.get('Country')?.hasError('minlength')" class="input-error">Pais debe tener 3 caracteres minimo.</div>
+        <div *ngIf="employeeForm.get('Country')?.hasError('minlength')" class="input-error">Pais debe tener 2 caracteres minimo.</div>
     </div>
 
     <label for="HomePhone">Nro. de telefono:</label>

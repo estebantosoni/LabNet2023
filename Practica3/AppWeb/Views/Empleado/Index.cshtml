@@ -31,56 +31,57 @@
     </style>
 </head>
 
-<body>
-    <h1>
-        Lista de empleados
-    </h1>
+<main>
+    <body>
+        <h1>
+            Lista de empleados
+        </h1>
 
-    <div class="link-button insert-button">@Html.ActionLink("Insertar", "InsertView", new { area = "" }, new { @class = "nav-link" })</div>
+        <div class="link-button insert-button">@Html.ActionLink("Insertar", "InsertView", new { area = "" }, new { @class = "nav-link" })</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre completo</th>
-                <th scope="col"> Titulo </th>
-                <th scope="col"> Fecha de contratacion </th>
-                <th scope="col"> Ciudad </th>
-                <th scope="col"> Pais </th>
-                <th scope="col"> Teléfono </th>
-                <th scope="col"> Acciones </th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.ID</td>
-                        <td>@item.FirstName @item.LastName</td>
-                        <td>@item.Title</td>
-                        <td>@item.HireDate</td>
-                        <td>@item.City</td>
-                        <td>@item.Country</td>
-                        <td>@item.HomePhone</td>
-                        <td>
-                            <div class="link-button">
-                                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "nav-link" })
-                            </div>
-                            <div class="link-button">
-                                @Html.ActionLink("Actualizar", "UpdateView", item, new { @class = "nav-link" })
-                            </div>
-                        </td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre completo</th>
+                    <th scope="col"> Titulo </th>
+                    <th scope="col"> Fecha de contratacion </th>
+                    <th scope="col"> Ciudad </th>
+                    <th scope="col"> Pais </th>
+                    <th scope="col"> Teléfono </th>
+                    <th scope="col"> Acciones </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.Title</td>
+                            <td>@item.HireDate</td>
+                            <td>@item.City</td>
+                            <td>@item.Country</td>
+                            <td>@item.HomePhone</td>
+                            <td>
+                                <div class="link-button">
+                                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID }, new { @class = "nav-link" })
+                                </div>
+                                <div class="link-button">
+                                    @Html.ActionLink("Actualizar", "UpdateView", item, new { @class = "nav-link" })
+                                </div>
+                            </td>
 
-                    </tr>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script>
+        <script>
 
         function mostrarResultado() {
             var successMessage = '@TempData["SuccessMessage"]';
@@ -106,8 +107,9 @@
         }
 
         mostrarResultado();
-    </script>
-</body>
+        </script>
+    </body>
+</main>
 
 
 
